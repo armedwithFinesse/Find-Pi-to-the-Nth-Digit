@@ -12,8 +12,16 @@ Calculating the Fibonacci Sequence to the
 ''')
 
 golden_ratio = (1 + 5 ** 0.5)/2
-user = int(input('Enter a number (n): '))                                          
-                                                                #binets_formula = ((golden_ratio**user) - ((1 - golden_ratio)**user))/math.sqrt(5)
+while True:
+    try:
+        user = int(input('Enter a number (n): '))                                          
+                                                    #binets_formula = ((golden_ratio**user) - ((1 - golden_ratio)**user))/math.sqrt(5)  
+        break
+    except:
+        print('Must enter a valid integer')
+        continue
+    
+
 userlist = list()
 for i in range(user+1):
     binets_formula_i = ((golden_ratio**i) - ((1 - golden_ratio)**i))/math.sqrt(5)
