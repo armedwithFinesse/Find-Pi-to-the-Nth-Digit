@@ -11,9 +11,15 @@ __      __      _
 
 
 ''')
+y = True
+while y == True:
+    try:
+        user = int((input('Enter a number: ')))
+        break
+    except:
+        print('Please enter a valid integer')
+        continue
 
-
-user = int((input('Enter a number: ')))
 factors = list()
 x = True
 while x == True:
@@ -33,9 +39,12 @@ while x == True:
             if user % i == 0:
                 factors.append(i)
                 user/i
-
     else:
-        print(factors)
-        x == False
-        break
+        if len(factors) < 1:
+            print('This is already a prime number!')
+            break
+            
+        else:
+            print(factors)
+            break
 
