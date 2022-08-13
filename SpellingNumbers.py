@@ -113,6 +113,8 @@ def doubledigitplacevalue(placevalue):
         if placevalue == 'noval':
             print(value, end=" ")
             break
+        elif placevalue == "":
+            print(placevalue, end="")
         else:
             print(value + placevalue, end=" ")  
             break 
@@ -123,6 +125,7 @@ def doubledigitplacevalue_no_cond(placevalue):
             value = " "
             break
         elif i == '1':
+
             value = 'Ten' 
             break
         elif i == '2':
@@ -177,83 +180,216 @@ user_input_number = str(user_input_number)
 user_input_number = tuple(user_input_number)
 if len(user_input_number) == 7: #millions
     singledigitplacevalue(' Million')
+
+
+
 elif len(user_input_number) == 6: # hundred -thousands
-    singledigitplacevalue(' Hundred-Thousand')
+    if user_input_number[1] == '0' and user_input_number [2] == '0':
+        singledigitplacevalue(' Hundred-Thousand')
+    elif user_input_number[1] != '0' and user_input_number != '0':
+        singledigitplacevalue(' Hundred and')
+    else:
+        singledigitplacevalue(' Hundred')
+
+    for i in user_input_number:
+        if i == user_input_number[1] and user_input_number[1] != '0':
+            doubledigitplacevalue_no_cond(' Thousand')
+            break
+        elif i == user_input_number[1] and user_input_number == '0':
+            doubledigitplacevalue_no_cond('noval')
+            break
+        else:
+            continue
+    for i in user_input_number:
+        if i == user_input_number[2] and user_input_number[2] != '0':
+            singledigitplacevalue_no_cond(' Hundred')
+            break
+        elif i == user_input_number[2] and user_input_number[2] == '0':
+            singledigitplacevalue_no_cond('noval')
+            break
+        else:
+            continue
+    for i in user_input_number:
+        if i == user_input_number[3] and user_input_number[3] != '0':
+            pass
+        else:
+            continue
 
 
 
-
-
+#===========================================================================================================================works/needtenpendingdixed
 elif len(user_input_number) == 5: #ten-thousands
     if user_input_number[1] == '0':
         doubledigitplacevalue('-Thousand')
     else:
         doubledigitplacevalue('noval')
-    thousands_count = 1
+
+    for i in user_input_number:
+        if i == user_input_number[1] and user_input_number[1] != '0':
+            singledigitplacevalue_no_cond(' Thousand')
+            break
+        elif i == user_input_number[1] and user_input_number[1] == '0':
+            singledigitplacevalue_no_cond('noval')
+            break
+        else:
+            continue
+    for i in user_input_number:
+        if i == user_input_number[2] and user_input_number[2] != '0':
+            singledigitplacevalue_no_cond(' Hundred')
+            break
+        elif i == user_input_number[2] and user_input_number[2] == '0':
+            singledigitplacevalue_no_cond('noval')
+            break
+        else:
+            continue
+    for i in user_input_number:
+        if i == user_input_number[3] and user_input_number[3] != '0':
+            doubledigitplacevalue_no_cond('noval')
+            break
+        elif i == user_input_number[3] and user_input_number[3] == '0':
+            doubledigitplacevalue_no_cond('Ten/Pending')
+            break
+        else:
+            continue
+    for i in user_input_number:
+        if i == user_input_number[4]:
+            singledigitplacevalue_no_cond('noval')
+            break
+        else:
+            continue
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    '''thousands_count = 1
     hundreds_count = 1
     tens_count = 1
     ones_count = 1
     for i in user_input_number:
         if i == user_input_number[1] and thousands_count == 1:
-            singledigitplacevalue_no_cond('-Thousand') #create joiner function between ten thousands and thousands (i.e "fifty five thousand")
-            thousands_count +=1
-            continue
+            if user_input_number[1] != '0':
+                singledigitplacevalue_no_cond(' Thousand') 
+            else:
+                singledigitplacevalue_no_cond('noval')
+            thousands_count +=1 
         if i == user_input_number[2] and hundreds_count == 1:
-            singledigitplacevalue_no_cond(' Hundred')
+            if user_input_number[2] != '0':
+                singledigitplacevalue_no_cond(' Hundred')
+            else:
+                singledigitplacevalue_no_cond('noval')
             hundreds_count += 1
-            continue
         if i == user_input_number[3] and tens_count == 1:
             doubledigitplacevalue_no_cond('noval')
             tens_count += 1
-            continue
-                
         if i == user_input_number[4] and ones_count == 1:
             singledigitplacevalue_no_cond('noval')
             ones_count += 1
-            continue
-        else:
-            break
+            break'''
+        
 
 
-
+#===============================================================================================================works
 
 elif len(user_input_number) == 4: #thousands
     singledigitplacevalue(' Thousand') 
-    hundreds_count = 1
+    for i in user_input_number:
+        if i == user_input_number[1] and user_input_number[1] != '0':
+            singledigitplacevalue_no_cond(' Hundred')
+            break
+        elif i == user_input_number[1] and user_input_number[1] == '0':
+            singledigitplacevalue_no_cond('noval')
+        else:
+            continue
+    for i in user_input_number:
+        if i == user_input_number[2] and user_input_number != '0':
+            doubledigitplacevalue_no_cond('noval')
+            break
+        elif i == user_input_number[2] and user_input_number == '0':
+            doubledigitplacevalue_no_cond('Ten/Pending')
+            break
+        else:
+            continue
+    for i in user_input_number:
+        if i == user_input_number[3]:
+            singledigitplacevalue_no_cond('noval')
+            break
+        else:
+            continue
+
+
+
+    '''hundreds_count = 1
     tens_count = 1
     ones_count = 1
     for i in user_input_number:
         if i == user_input_number[1] and hundreds_count == 1:
-            singledigitplacevalue_no_cond(' Hundred')
+            if user_input_number[1] != 0:
+                singledigitplacevalue_no_cond(' Hundred')
+            else:
+                singledigitplacevalue_no_cond('noval')
             hundreds_count += 1
-            continue
         if i == user_input_number[2] and tens_count == 1:
-            doubledigitplacevalue_no_cond('noval')
+            if user_input_number[2] != 0:
+                doubledigitplacevalue_no_cond(' Hundred')
+            else:
+                doubledigitplacevalue_no_cond('noval')
             tens_count += 1
-            continue
-                
         if i == user_input_number[3] and ones_count == 1:
             singledigitplacevalue_no_cond('noval')
             ones_count += 1
-            continue
-        else:
             break
+        else:
+            continue'''
 
 
 
 
 
-
+#==================================================================================================================works
 
 elif len(user_input_number) == 3: #hundreds
     singledigitplacevalue(' Hundred') 
     for i in user_input_number:
         if i == user_input_number[1]:
             doubledigitplacevalue_no_cond('noval')
+            break
+        else:
+            continue
+    for i in user_input_number:
         if i == user_input_number[2]:
             singledigitplacevalue_no_cond('noval')
             break
+        else:
+            continue
 
+    '''for i in user_input_number:
+        if i == user_input_number[1]:
+                doubledigitplacevalue_no_cond('noval')
+        if i == user_input_number[2]:
+            singledigitplacevalue_no_cond('noval')
+            
+        else:
+            break'''
+
+    
+
+
+
+
+#========================================================================================================works
 elif len(user_input_number) == 2: #tens
     doubledigitplacevalue('noval')
     for i in user_input_number:
@@ -273,27 +409,6 @@ elif len(user_input_number) == 1: #ones
 
 
 
-
-
-'''placevaluedict = {
-            
-            "Millions":begtup[0],
-            "Hundred-Thousand":begtup[1],
-            "Ten-thousand":begtup[2],
-            "Thousand": begtup[3],
-            "Hundred":begtup[4],
-            "Ten":begtup[5],
-            "One":begtup[6]
-            }
-
-while True:
-    try:
-        print(placevaluedict)
-        print(user_input_number)
-        break
-    except:
-        print('Enter a valid integer')
-        continue'''
 
 
 
