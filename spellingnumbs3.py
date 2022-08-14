@@ -1,4 +1,15 @@
+print('''
 
+
+▀█▄   ▀█▀                     ▀██                          ▄█▀▀▀▄█                   ▀██  ▀██                  
+ █▀█   █  ▄▄▄ ▄▄▄  ▄▄ ▄▄ ▄▄    ██ ▄▄▄    ▄▄▄▄  ▄▄▄ ▄▄      ██▄▄  ▀  ▄▄▄ ▄▄▄    ▄▄▄▄   ██   ██    ▄▄▄▄  ▄▄▄ ▄▄  
+ █ ▀█▄ █   ██  ██   ██ ██ ██   ██▀  ██ ▄█▄▄▄██  ██▀ ▀▀      ▀▀███▄   ██▀  ██ ▄█▄▄▄██  ██   ██  ▄█▄▄▄██  ██▀ ▀▀ 
+ █   ███   ██  ██   ██ ██ ██   ██    █ ██       ██        ▄     ▀██  ██    █ ██       ██   ██  ██       ██     
+▄█▄   ▀█   ▀█▄▄▀█▄ ▄██ ██ ██▄  ▀█▄▄▄▀   ▀█▄▄▄▀ ▄██▄       █▀▄▄▄▄█▀   ██▄▄▄▀   ▀█▄▄▄▀ ▄██▄ ▄██▄  ▀█▄▄▄▀ ▄██▄    
+                                                                     ██                                        
+                                                                    ▀▀▀▀                                       
+
+''')
 
 
 
@@ -159,17 +170,22 @@ for i in placevalue: #hundred thousands
 
 for i in placevalue: #ten thousands
 
-    if placevalue['Ten-Thousands'] != '0' and placevalue['Thousands'] >= '0' : 
+    #if placevalue['Ten-Thousands'] != '0' and placevalue['Thousands'] >= '0' : 
         if placevalue['Ten-Thousands'] == '1' and placevalue['Thousands'] > '0': 
             xteen(placevalue['Thousands'], ' Thousand ') #sep function needed to definte 11 - 19 thousand
         elif placevalue['Ten-Thousands'] == '1' and placevalue['Thousands'] == '0': 
-            doubledigitfunction(placevalue['Ten-Thousands'], ' Thousand ') #ex: "fifty" thousand
+            doubledigitfunction(placevalue['Ten-Thousands'], ' Thousand ') # ten thousand
+        elif placevalue['Ten-Thousands'] > '1' and placevalue['Thousands'] >= '0':
+            doubledigitfunction(placevalue['Ten-Thousands'], 'none') #ex: "fifty" thousand
+
+
+
         #doubledigitfunction(placevalue['Ten-Thousands'], 'none') #ex: "fifty" thousand
     #elif placevalue['Ten-Thousands'] == '1' and placevalue['Thousands'] > '0': 
         #xteen(placevalue['Thousands'], ' Thousand ') #sep function needed to definte 11 - 19 thousand
-    elif placevalue['Ten-Thousands'] == '0':
-        break 
-    break
+        elif placevalue['Ten-Thousands'] == '0':
+            break 
+        break
 
 
 
