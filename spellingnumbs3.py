@@ -12,6 +12,46 @@ placevalue = {
     'Tens':'0',
     'Ones':'0'
 }
+def xteen(i, placevalue):
+    xteenvalue = 0
+    while True:
+        if i == '1':
+            xteenvalue = 'Eleven'
+            break
+        elif i == '2':
+            xteenvalue = 'Twelve'
+            break
+        elif i == '3':
+            xteenvalue = 'Thirteen'
+            break
+        elif i == '4':
+            xteenvalue = 'Fourteen'
+            break
+        elif i == '5':
+            xteenvalue = 'Fifteen'
+            break
+        elif i == '6':
+            xteenvalue = 'Sixteen'
+            break
+        elif i == '7':
+            xteenvalue = 'Seventeen'
+            break
+        elif i == '8':
+            xteenvalue = 'Eighteen'
+            break
+        elif i == '9':
+            xteenvalue = 'Nineteen'
+            break
+        else:
+            break
+
+
+    if placevalue == 'none':
+        print(xteenvalue, end=" ")
+    else:
+        print(xteenvalue + placevalue, end=" ")
+    
+
 
 def singledigitfunction(i, placevalue):
     val = '0'
@@ -36,7 +76,7 @@ def singledigitfunction(i, placevalue):
     elif i == '9':
         val = 'Nine'
    
-    if i == '0':
+    if placevalue == 'none':
         print(val)
     else:
         print(val + placevalue, end= "")   
@@ -64,7 +104,7 @@ def doubledigitfunction(i, placevalue):
     elif i == '9':
         val = 'Ninety'
    
-    if i == '0':
+    if placevalue == 'none':
         print(val)
     else:
         print(val + placevalue, end= "")  
@@ -96,7 +136,83 @@ if len(numlist) == 7:
 else:
     print('Something went horribly wrong')
 
-print(placevalue)
+
+for i in placevalue: #millions
+    if placevalue['Millions'] != '0': #Millions place
+        singledigitfunction(placevalue['Millions'], ' Million ')
+        break
+
+
+
+for i in placevalue: #hundred thousands
+
+    if placevalue['Hundred-Thousands'] != '0' and placevalue['Ten-Thousands'] == '0': 
+        singledigitfunction(placevalue['Hundred-Thousands'], ' Hundred-and ')
+    elif placevalue['Hundred-Thousands'] != '0' and placevalue['Ten-Thousands'] != '0':
+        singledigitfunction(placevalue['Hundred-Thousands'], ' Hundred ')
+    elif placevalue['Hundred-Thousands'] == '0':
+        break
+    else:
+        singledigitfunction(placevalue['Hundred-Thousands'], ' Hundred-Thousand ')
+    break
+
+
+for i in placevalue: #ten thousands
+
+    if placevalue['Ten-Thousands'] != '0' and placevalue['Thousands'] >= '0' : 
+        if placevalue['Ten-Thousands'] == '1' and placevalue['Thousands'] > '0': 
+            xteen(placevalue['Thousands'], ' Thousand ') #sep function needed to definte 11 - 19 thousand
+        elif placevalue['Ten-Thousands'] == '1' and placevalue['Thousands'] == '0': 
+            doubledigitfunction(placevalue['Ten-Thousands'], ' Thousand ') #ex: "fifty" thousand
+        #doubledigitfunction(placevalue['Ten-Thousands'], 'none') #ex: "fifty" thousand
+    #elif placevalue['Ten-Thousands'] == '1' and placevalue['Thousands'] > '0': 
+        #xteen(placevalue['Thousands'], ' Thousand ') #sep function needed to definte 11 - 19 thousand
+    elif placevalue['Ten-Thousands'] == '0':
+        break 
+    break
+
+
+
+
+for i in placevalue: #thousands
+
+    if placevalue['Thousands'] != '0' and placevalue['Hundreds'] >= '0': 
+        if placevalue['Ten-Thousands'] == '1':
+            break
+        else:
+            singledigitfunction(placevalue['Thousands'], ' Thousand ')
+
+    break
+
+
+for i in placevalue: #hundreds
+
+    if placevalue['Hundreds'] != '0':
+        singledigitfunction(placevalue['Hundreds'], ' Hundred ')
+    break
+
+for i in placevalue: #tens
+
+    if placevalue['Tens'] == "1" and placevalue['Ones'] > '0':
+        xteen(placevalue['Ones'], 'none') #sep function needed to definte 11 - 19 
+    elif placevalue['Tens'] != '0':
+        doubledigitfunction(placevalue['Tens'], 'none')
+    elif placevalue['Tens'] == '0' and placevalue['Hundreds'] > '0':
+        doubledigitfunction(placevalue['Tens'], ' and ')
+    break
+
+for i in placevalue: #ones
+
+    if placevalue['Tens'] == '1':
+        break
+    elif placevalue['Ones'] != '0':
+        singledigitfunction(placevalue['Ones'], 'none')
+        break
+    
+
+
+
+
 
 
 '''
