@@ -16,6 +16,50 @@ Then I have to define the place value of any number up to and including 1,000,00
   perhaps I can find place value by the length of the user input number
   
   '''
+
+def xteen(i, placevalue):
+    xteenvalue = 0
+    while True:
+        if i == '1':
+            xteenvalue = 'Eleven'
+            break
+        elif i == '2':
+            xteenvalue = 'Twelve'
+            break
+        elif i == '3':
+            xteenvalue = 'Thirteen'
+            break
+        elif i == '4':
+            xteenvalue = 'Fourteen'
+            break
+        elif i == '5':
+            xteenvalue = 'Fifteen'
+            break
+        elif i == '6':
+            xteenvalue = 'Sixteen'
+            break
+        elif i == '7':
+            xteenvalue = 'Seventeen'
+            break
+        elif i == '8':
+            xteenvalue = 'Eighteen'
+            break
+        elif i == '9':
+            xteenvalue = 'Nineteen'
+            break
+        else:
+            break
+
+
+    if placevalue == 'noval':
+        print(xteenvalue, end=" ")
+    else:
+        print(xteenvalue + placevalue, end=" ")
+    
+
+
+
+
 def singledigitplacevalue_no_cond(placevalue):
     while True:
         if i == '0':
@@ -113,8 +157,6 @@ def doubledigitplacevalue(placevalue):
         if placevalue == 'noval':
             print(value, end=" ")
             break
-        elif placevalue == "":
-            print(placevalue, end="")
         else:
             print(value + placevalue, end=" ")  
             break 
@@ -182,21 +224,140 @@ if len(user_input_number) == 7: #millions
     singledigitplacevalue(' Million')
 
 
-
+#========================================================================================================================IN PROGRESS
 elif len(user_input_number) == 6: # hundred -thousands
-    if user_input_number[1] == '0' and user_input_number [2] == '0':
-        singledigitplacevalue(' Hundred-Thousand')
-    elif user_input_number[1] != '0' and user_input_number != '0':
-        singledigitplacevalue(' Hundred and')
-    else:
-        singledigitplacevalue(' Hundred')
 
     for i in user_input_number:
-        if i == user_input_number[1] and user_input_number[1] != '0':
+        if user_input_number[1] == '0' and user_input_number [2] == '0':
+            singledigitplacevalue(' Hundred-Thousand')
+            newvar = 1
+            break
+        elif user_input_number[1] != '0' and user_input_number[2] != '0':
+            singledigitplacevalue(' Hundred and')
+            break
+        elif user_input_number[1] != '0' and user_input_number[2] <= '0':
+            singledigitplacevalue(' Hundred and')
+            break
+        else:
+            singledigitplacevalue(' Hundred')
+            break
+    for i in user_input_number:
+        if user_input_number[2] == '0' and newvar != 1:
+            doubledigitplacevalue('-Thousand') 
+            rvar = 1
+            break
+        elif user_input_number[1] == '1' and user_input_number[2] == '0':
+            singledigitplacevalue('-Thousand') #thousand
+            break
+        elif user_input_number[1] == '1' and user_input_number[2] > '0' and user_input_number[2] <= '9':
+            xteen(user_input_number[2], '- Thousand')
+            rvar = 3
+            break
+        elif newvar != 1:
+            doubledigitplacevalue('noval')
+            rvar = 1
+            break
+       
+    count = 0
+    for i in user_input_number:
+        if i == user_input_number[2] and user_input_number[2] != '0' and rvar == 1:
+            #1-9 thou
+            singledigitplacevalue_no_cond(' Thousand')
+            break
+        elif i == user_input_number[2] and user_input_number[2] == '0' and rvar == 0:
+            singledigitplacevalue_no_cond('noval')
+            break
+        else:
+            continue
+    for i in user_input_number:
+        if i == user_input_number[3] and user_input_number[3] != '0':
+            singledigitplacevalue_no_cond(' Hundred')
+            break
+        elif i == user_input_number[3] and user_input_number[3] == '0':
+            singledigitplacevalue_no_cond('noval')
+            break
+        else:
+            continue
+    for i in user_input_number:
+        if i == user_input_number[4] and user_input_number[4] == '1' and user_input_number[5] != '0':
+            #some loop to find numbers eleven through nineteen
+            xteen(user_input_number[5], 'noval')
+            count += 1
+            movcount = 1
+            break
+        elif i == user_input_number[4] and user_input_number[4] >= '0' and user_input_number[5] >= '0' and count == 0:
+            doubledigitplacevalue_no_cond('noval')
+            movcount = 2
+            break
+        else:
+            continue
+    for i in user_input_number:
+        if i == user_input_number[5] and movcount == 2:
+            singledigitplacevalue_no_cond('noval')
+            break
+        elif i == user_input_number[5] and movcount == 1:
+            break
+        else:
+            continue
+
+
+
+
+
+
+    '''for i in user_input_number:
+        if i == user_input_number[2] and user_input_number[2] != '0' and rvar == 1:
             doubledigitplacevalue_no_cond(' Thousand')
             break
-        elif i == user_input_number[1] and user_input_number == '0':
+        elif i == user_input_number[2] and user_input_number == '0' and rvar == 2:
             doubledigitplacevalue_no_cond('noval')
+            break
+        else:
+            continue
+    for i in user_input_number:
+        if i == user_input_number[3] and user_input_number[3] != '0':
+            singledigitplacevalue_no_cond(' Hundred')
+            break
+        elif i == user_input_number[3] and user_input_number[3] == '0':
+            singledigitplacevalue_no_cond('noval')
+            break
+        else:
+            continue
+    for i in user_input_number:
+        if i == user_input_number[4] and user_input_number[4] != '0':
+            pass
+        else:
+            continue'''
+
+
+
+#===========================================================================================================================works===========================
+elif len(user_input_number) == 5: #ten-thousands
+    for i in user_input_number:
+        if user_input_number[1] == '0':
+            doubledigitplacevalue('-Thousand') #11-90 thou
+            rvar = 1
+            break
+        elif user_input_number[0] == '1' and user_input_number[1] == '0':
+            singledigitplacevalue('noval') #thousand
+            break
+        elif user_input_number[0] == '1' and user_input_number[1] > '0' and user_input_number[1] <= '9':
+            xteen(user_input_number[1], '-Thousand')
+            rvar = 3
+            break
+        else:
+            doubledigitplacevalue('noval')
+            rvar = 1
+            break
+       
+    count = 0
+    for i in user_input_number:
+        if i == user_input_number[1] and user_input_number[1] != '0' and rvar == 1:
+            #1-9 thou
+            singledigitplacevalue_no_cond(' Thousand')
+            break
+        elif i == user_input_number[1] and user_input_number[1] == '0' and rvar == 0:
+            singledigitplacevalue_no_cond('noval')
             break
         else:
             continue
@@ -210,30 +371,31 @@ elif len(user_input_number) == 6: # hundred -thousands
         else:
             continue
     for i in user_input_number:
-        if i == user_input_number[3] and user_input_number[3] != '0':
-            pass
+        if i == user_input_number[3] and user_input_number[3] == '1' and user_input_number[4] != '0':
+            #some loop to find numbers eleven through nineteen
+            xteen(user_input_number[4], 'noval')
+            count += 1
+            movcount = 1
+            break
+        elif i == user_input_number[3] and user_input_number[3] >= '0' and user_input_number[4] >= '0' and count == 0:
+            doubledigitplacevalue_no_cond('noval')
+            movcount = 2
+            break
         else:
             continue
-
-
-
-#===========================================================================================================================works/needtenpendingdixed
-elif len(user_input_number) == 5: #ten-thousands
-    if user_input_number[1] == '0':
-        doubledigitplacevalue('-Thousand')
-    else:
-        doubledigitplacevalue('noval')
-
     for i in user_input_number:
-        if i == user_input_number[1] and user_input_number[1] != '0':
-            singledigitplacevalue_no_cond(' Thousand')
-            break
-        elif i == user_input_number[1] and user_input_number[1] == '0':
+        if i == user_input_number[4] and movcount == 2:
             singledigitplacevalue_no_cond('noval')
             break
+        elif i == user_input_number[4] and movcount == 1:
+            break
         else:
             continue
-    for i in user_input_number:
+
+
+
+
+    '''for i in user_input_number:
         if i == user_input_number[2] and user_input_number[2] != '0':
             singledigitplacevalue_no_cond(' Hundred')
             break
@@ -256,7 +418,7 @@ elif len(user_input_number) == 5: #ten-thousands
             singledigitplacevalue_no_cond('noval')
             break
         else:
-            continue
+            continue'''
 
 
     
@@ -301,10 +463,11 @@ elif len(user_input_number) == 5: #ten-thousands
         
 
 
-#===============================================================================================================works
+#===============================================================================================================works=======================================
 
 elif len(user_input_number) == 4: #thousands
     singledigitplacevalue(' Thousand') 
+    count = 0
     for i in user_input_number:
         if i == user_input_number[1] and user_input_number[1] != '0':
             singledigitplacevalue_no_cond(' Hundred')
@@ -314,17 +477,23 @@ elif len(user_input_number) == 4: #thousands
         else:
             continue
     for i in user_input_number:
-        if i == user_input_number[2] and user_input_number != '0':
-            doubledigitplacevalue_no_cond('noval')
+        if i == user_input_number[2] and user_input_number[2] == '1' and user_input_number[3] != '0':
+            #some loop to find numbers eleven through nineteen
+            xteen(user_input_number[3], 'noval')
+            count += 1
+            movcount = 1
             break
-        elif i == user_input_number[2] and user_input_number == '0':
-            doubledigitplacevalue_no_cond('Ten/Pending')
+        elif i == user_input_number[2] and user_input_number[2] >= '0' and user_input_number[3] >= '0' and count == 0:
+            doubledigitplacevalue_no_cond('noval')
+            movcount = 2
             break
         else:
             continue
     for i in user_input_number:
-        if i == user_input_number[3]:
+        if i == user_input_number[3] and movcount == 2:
             singledigitplacevalue_no_cond('noval')
+            break
+        elif i == user_input_number[3] and movcount == 1:
             break
         else:
             continue
@@ -358,22 +527,31 @@ elif len(user_input_number) == 4: #thousands
 
 
 
-#==================================================================================================================works
+#==================================================================================================================works====================================
 
 elif len(user_input_number) == 3: #hundreds
     singledigitplacevalue(' Hundred') 
+    count = 0
     for i in user_input_number:
-        if i == user_input_number[1]:
+        
+        if i == user_input_number[1] and user_input_number[1] == '1' and user_input_number[2] != '0':
+            #some loop to find numbers eleven through nineteen
+            xteen(user_input_number[2], 'noval')
+            count += 1
+            break
+        elif i == user_input_number[1] and user_input_number[1] >= '0' and user_input_number[2] >= '0' and count == 0:
             doubledigitplacevalue_no_cond('noval')
             break
         else:
             continue
-    for i in user_input_number:
-        if i == user_input_number[2]:
-            singledigitplacevalue_no_cond('noval')
-            break
-        else:
-            continue
+
+    if count == 0:
+        for i in user_input_number:
+            if i == user_input_number[2]:
+                singledigitplacevalue_no_cond('noval')
+                break
+            else:
+                continue
 
     '''for i in user_input_number:
         if i == user_input_number[1]:
