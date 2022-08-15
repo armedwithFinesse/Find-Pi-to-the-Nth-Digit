@@ -1,8 +1,8 @@
 '''
 need to fix output formatting
-need to add quit option
-need to add handling for nengative numbers
-need to floats (?)
+need to add quit option + infinite running til quit
+need to add support for negative numbers
+need to add support for floats (?)
 '''
 
 
@@ -19,7 +19,7 @@ print('''
 ▄█▄   ▀█   ▀█▄▄▀█▄ ▄██ ██ ██▄  ▀█▄▄▄▀   ▀█▄▄▄▀ ▄██▄       █▀▄▄▄▄█▀   ██▄▄▄▀   ▀█▄▄▄▀ ▄██▄ ▄██▄  ▀█▄▄▄▀ ▄██▄    
                                                                      ██                                        
                                                                     ▀▀▀▀  
-                                    Enter 'quit' to exit                                      
+                                           Enter 'quit' to exit                                      
 
 ''')
 
