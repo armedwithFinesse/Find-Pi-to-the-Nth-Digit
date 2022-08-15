@@ -1,5 +1,4 @@
 '''
-need to fix output formatting
 need to add quit option + infinite running til quit
 need to add support for floats (?)
 '''
@@ -143,6 +142,7 @@ def doubledigitfunction(i, placevalue):
 while True:
     try:
         user_input_number = int(input(' Enter a number between -1000000 and 1000000: '))
+        len(user_input_number) <= 8
         break
     except:
         print('Please enter a valid integer between -1000000 and 1000000')
