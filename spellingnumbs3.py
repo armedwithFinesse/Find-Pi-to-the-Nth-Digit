@@ -1,4 +1,5 @@
 '''
+add integer limit
 need to add quit option + infinite running til quit
 need to add support for floats (?)
 '''
@@ -40,6 +41,7 @@ def isNegative():
         print('Negative ', end="")
     else:
         pass
+        
 
 
 def xteen(i, placevalue):
@@ -142,11 +144,11 @@ def doubledigitfunction(i, placevalue):
 while True:
     try:
         user_input_number = int(input(' Enter a number between -1000000 and 1000000: '))
-        len(user_input_number) <= 8
         break
     except:
         print('Please enter a valid integer between -1000000 and 1000000')
         continue
+
 
 user_input_number = str(user_input_number)
 user_input_number = user_input_number.zfill(8)
