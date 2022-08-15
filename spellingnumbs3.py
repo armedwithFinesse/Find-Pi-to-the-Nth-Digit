@@ -175,6 +175,8 @@ for i in placevalue: #ten thousands
             xteen(placevalue['Thousands'], ' Thousand ') #sep function needed to definte 11 - 19 thousand
         elif placevalue['Ten-Thousands'] == '1' and placevalue['Thousands'] == '0': 
             doubledigitfunction(placevalue['Ten-Thousands'], ' Thousand ') # ten thousand
+        elif placevalue['Ten-Thousands'] > '1' and placevalue['Thousands'] == '0':
+            doubledigitfunction(placevalue['Ten-Thousands'], ' Thousand ') 
         elif placevalue['Ten-Thousands'] > '1' and placevalue['Thousands'] >= '0':
             doubledigitfunction(placevalue['Ten-Thousands'], 'none') #ex: "fifty" thousand
 
@@ -213,7 +215,7 @@ for i in placevalue: #tens
         xteen(placevalue['Ones'], 'none') #sep function needed to definte 11 - 19 
     elif placevalue['Tens'] != '0':
         doubledigitfunction(placevalue['Tens'], 'none')
-    elif placevalue['Tens'] == '0' and placevalue['Hundreds'] > '0':
+    elif placevalue['Tens'] == '0' and placevalue['Hundreds'] > '0' and placevalue['Ones'] != '0':
         doubledigitfunction(placevalue['Tens'], ' and ')
     break
 
