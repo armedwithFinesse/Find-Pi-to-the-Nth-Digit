@@ -226,6 +226,10 @@ for i in placevalue: #ones
     elif placevalue['Ones'] != '0':
         singledigitfunction(placevalue['Ones'], 'none')
         break
+    elif placevalue['Ones'] == '0' and placevalue['Tens'] == '0' and placevalue['Hundreds']  == '0' and placevalue['Thousands']  == '0' and placevalue['Ten-Thousands']  == '0' and placevalue['Hundred-Thousands']  == '0' and placevalue['Millions']  == '0' :
+        print('Zero')
+        break
+
     
 
 
