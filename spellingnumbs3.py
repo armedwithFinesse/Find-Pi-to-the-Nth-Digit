@@ -1,7 +1,6 @@
 '''
 need to fix output formatting
 need to add quit option + infinite running til quit
-need to add support for negative numbers
 need to add support for floats (?)
 '''
 
@@ -27,6 +26,7 @@ print('''
 
 
 placevalue = {
+    'Negative?': '0',
     'Millions':'0',
     'Hundred-Thousands':'0',
     'Ten-Thousands':'0',
@@ -35,6 +35,14 @@ placevalue = {
     'Tens':'0',
     'Ones':'0'
 }
+
+def isNegative():
+    if placevalue['Negative?'] == '-':
+        print('Negative ', end="")
+    else:
+        pass
+
+
 def xteen(i, placevalue):
     xteenvalue = 0
     while True:
@@ -134,29 +142,32 @@ def doubledigitfunction(i, placevalue):
 
 while True:
     try:
-        user_input_number = int(input(' Enter a number between 0 and 1000000: '))
+        user_input_number = int(input(' Enter a number between -1000000 and 1000000: '))
         break
     except:
-        print('Please enter a valid integer between 0 and 1000000')
+        print('Please enter a valid integer between -1000000 and 1000000')
         continue
 
 user_input_number = str(user_input_number)
-user_input_number = user_input_number.zfill(7)
+user_input_number = user_input_number.zfill(8)
 numlist = (user_input_number[0], user_input_number[1], user_input_number[2],
-user_input_number[3],user_input_number[4],user_input_number[5],user_input_number[6])
+user_input_number[3],user_input_number[4],user_input_number[5],user_input_number[6], user_input_number[7])
 
-#print(numlist) Uncomment to show integer split up into placevalues
+print(numlist) #Uncomment to show integer split up into placevalues
 
-if len(numlist) == 7:
-    placevalue['Millions'] = numlist[0]
-    placevalue['Hundred-Thousands'] = numlist[1]
-    placevalue['Ten-Thousands'] = numlist[2]
-    placevalue['Thousands'] = numlist[3]
-    placevalue['Hundreds'] = numlist[4]
-    placevalue['Tens'] = numlist[5]
-    placevalue['Ones'] = numlist[6]
+if len(numlist) == 8:
+    placevalue['Negative?'] = numlist[0]
+    placevalue['Millions'] = numlist[1]
+    placevalue['Hundred-Thousands'] = numlist[2]
+    placevalue['Ten-Thousands'] = numlist[3]
+    placevalue['Thousands'] = numlist[4]
+    placevalue['Hundreds'] = numlist[5]
+    placevalue['Tens'] = numlist[6]
+    placevalue['Ones'] = numlist[7]
 else:
     print('Something went horribly wrong')
+
+isNegative()
 
 
 for i in placevalue: #millions
