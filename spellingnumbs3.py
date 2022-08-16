@@ -1,8 +1,5 @@
-import sys
-
 
 '''
-add integer limit
 need to add quit option + infinite running til quit
 need to add support for floats (?)
 '''
@@ -154,31 +151,27 @@ def promptfunction():
             print('Please enter a valid integer between -1000000 and 1000000')
             continue
 
-    
-    
-    count = 0
-    for i in user_input_number:
-        count += 1
-
-    if count <= 8:
-        print('werks')
-    else:
-        print('number is too big')
-        promptfunction()
-
 
 def isNegative():
     if placevalue['Negative?'] == '-':
-        print('Negative ', end="")
-    else:
+        if len(user_input_number) > 8:
+            global out_of_range
+            out_of_range = True
+            print('\nNumber is out of range. Please enter a valid integer')
+        else:
+            print('Negative ', end="")
+    elif placevalue['Negative?'] == '0':
         pass
-
-def lengthChecker(u_input):
-    u_input = str(u_input)
-    if len(u_input) >= 8 and placevalue['Negative?'] != '0':
-       print('werks')
-
-
+    else:
+        out_of_range = True
+        print('\nNumber is out of range. Please enter a valid integer')
+    
+     
+def isPositivelyoutofrange():
+    if len(user_input_number) > 8 and placevalue:
+        global pos_bounds
+        pos_bounds = True
+        print('\nNumber is out of range. Please enter a valid integer')
 
 
 
@@ -187,7 +180,7 @@ def lengthChecker(u_input):
 
 
 while True:
-
+    out_of_range = False
     while True:
         try:
             user_input_number = int(input('\nEnter a number between -1000000 and 1000000: '))
@@ -206,6 +199,7 @@ while True:
 
 
     print(numlist) #Uncomment to show integer split up into placevalues
+    #print(user_input_number)
 
     if len(numlist) == 8:
         placevalue['Negative?'] = numlist[0]
@@ -220,6 +214,11 @@ while True:
         print('Something went horribly wrong')
 
     isNegative()
+    try:
+        if out_of_range == True:
+            continue
+    except:
+        pass
 
 
     for i in placevalue: #millions
@@ -299,6 +298,8 @@ while True:
         elif placevalue['Ones'] == '0' and placevalue['Tens'] == '0' and placevalue['Hundreds']  == '0' and placevalue['Thousands']  == '0' and placevalue['Ten-Thousands']  == '0' and placevalue['Hundred-Thousands']  == '0' and placevalue['Millions']  == '0' :
             print('Zero')
             break
+
+
 
         
 
