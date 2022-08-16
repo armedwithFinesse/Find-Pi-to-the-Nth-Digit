@@ -1,21 +1,16 @@
-
 '''
-need to add quit option + infinite running til quit
+need to add quit option + infinite running* til quit
 need to add support for floats (?)
 '''
 
 print('''
-
-
 ▀█▄   ▀█▀                     ▀██                          ▄█▀▀▀▄█                   ▀██  ▀██                  
  █▀█   █  ▄▄▄ ▄▄▄  ▄▄ ▄▄ ▄▄    ██ ▄▄▄    ▄▄▄▄  ▄▄▄ ▄▄      ██▄▄  ▀  ▄▄▄ ▄▄▄    ▄▄▄▄   ██   ██    ▄▄▄▄  ▄▄▄ ▄▄  
  █ ▀█▄ █   ██  ██   ██ ██ ██   ██▀  ██ ▄█▄▄▄██  ██▀ ▀▀      ▀▀███▄   ██▀  ██ ▄█▄▄▄██  ██   ██  ▄█▄▄▄██  ██▀ ▀▀ 
  █   ███   ██  ██   ██ ██ ██   ██    █ ██       ██        ▄     ▀██  ██    █ ██       ██   ██  ██       ██     
 ▄█▄   ▀█   ▀█▄▄▀█▄ ▄██ ██ ██▄  ▀█▄▄▄▀   ▀█▄▄▄▀ ▄██▄       █▀▄▄▄▄█▀   ██▄▄▄▀   ▀█▄▄▄▀ ▄██▄ ▄██▄  ▀█▄▄▄▀ ▄██▄    
                                                                      ██                                        
-                                                                    ▀▀▀▀  
-                                                                               
-
+                                                                    ▀▀▀▀                                                                                
 ''')
 
 
@@ -31,17 +26,6 @@ placevalue = {
     'Tens':'0',
     'Ones':'0'
 }
-
-
-def inRange():
-    while True:
-
-        if len(user_input_number) < 8 and placevalue['Negative?'] == '0':
-            print('Please enter a valid integer between -1000000 and 1000000')
-        elif len(user_input_number) <= 8 and placevalue['Negative?'] == '-':
-            pass
-        else:
-            pass
 
 
 def xteen(i, placevalue):
@@ -76,14 +60,11 @@ def xteen(i, placevalue):
             break
         else:
             break
-
-
     if placevalue == 'none':
         print(xteenvalue, end="")
     else:
         print(xteenvalue + placevalue, end="")
     
-
 
 def singledigitfunction(i, placevalue):
     val = '0'
@@ -112,6 +93,7 @@ def singledigitfunction(i, placevalue):
         print(val, end="")
     else:
         print(val  +placevalue, end="")   
+
 
 def doubledigitfunction(i, placevalue):
     val = '0'
@@ -142,16 +124,6 @@ def doubledigitfunction(i, placevalue):
         print(val + placevalue, end="")  
 
 
-def promptfunction():
-    while True:
-        try:
-            user_input_number = int(input(' Enter a number between -1000000 and 1000000: '))
-            break
-        except:
-            print('Please enter a valid integer between -1000000 and 1000000')
-            continue
-
-
 def isNegative():
     if placevalue['Negative?'] == '-':
         if len(user_input_number) > 8:
@@ -165,32 +137,25 @@ def isNegative():
     else:
         out_of_range = True
         print('\nNumber is out of range. Please enter a valid integer')
+        
     
-     
-def isPositivelyoutofrange():
-    if len(user_input_number) > 8 and placevalue:
-        global pos_bounds
-        pos_bounds = True
-        print('\nNumber is out of range. Please enter a valid integer')
+    
 
-
-
-
-
+def isQuit():
+    quit()
 
 
 while True:
     out_of_range = False
-    while True:
+    while True: 
         try:
             user_input_number = int(input('\nEnter a number between -1000000 and 1000000: '))
             break
-            
         except:
             print('\nPlease enter a valid integer between -1000000 and 1000000')
             continue
             
-
+    
     
     user_input_number = str(user_input_number)
     user_input_number = user_input_number.zfill(8)
@@ -198,8 +163,8 @@ while True:
     user_input_number[3],user_input_number[4],user_input_number[5],user_input_number[6], user_input_number[7])
 
 
-    print(numlist) #Uncomment to show integer split up into placevalues
-    #print(user_input_number)
+    #print(numlist) #Uncomment to show integer split up into placevalues
+    #print(user_input_number) #Uncomment to show user input value
 
     if len(numlist) == 8:
         placevalue['Negative?'] = numlist[0]
@@ -245,18 +210,17 @@ while True:
 
     for i in placevalue: #ten thousands
 
-        #if placevalue['Ten-Thousands'] != '0' and placevalue['Thousands'] >= '0' : 
-            if placevalue['Ten-Thousands'] == '1' and placevalue['Thousands'] > '0': 
-                xteen(placevalue['Thousands'], ' Thousand ') #sep function needed to definte 11 - 19 thousand
-            elif placevalue['Ten-Thousands'] == '1' and placevalue['Thousands'] == '0': 
-                doubledigitfunction(placevalue['Ten-Thousands'], ' Thousand ') # ten thousand
-            elif placevalue['Ten-Thousands'] > '1' and placevalue['Thousands'] == '0':
-                doubledigitfunction(placevalue['Ten-Thousands'], ' Thousand ') 
-            elif placevalue['Ten-Thousands'] > '1' and placevalue['Thousands'] >= '0':
-                doubledigitfunction(placevalue['Ten-Thousands'], 'none') #ex: "fifty" thousand
-            elif placevalue['Ten-Thousands'] == '0':
-                break 
-            break
+        if placevalue['Ten-Thousands'] == '1' and placevalue['Thousands'] > '0': 
+            xteen(placevalue['Thousands'], ' Thousand ') #sep function needed to definte 11 - 19 thousand
+        elif placevalue['Ten-Thousands'] == '1' and placevalue['Thousands'] == '0': 
+            doubledigitfunction(placevalue['Ten-Thousands'], ' Thousand ') # ten thousand
+        elif placevalue['Ten-Thousands'] > '1' and placevalue['Thousands'] == '0':
+            doubledigitfunction(placevalue['Ten-Thousands'], ' Thousand ') 
+        elif placevalue['Ten-Thousands'] > '1' and placevalue['Thousands'] >= '0':
+            doubledigitfunction(placevalue['Ten-Thousands'], 'none') #ex: "fifty" thousand
+        elif placevalue['Ten-Thousands'] == '0':
+            break 
+        break
 
 
 
