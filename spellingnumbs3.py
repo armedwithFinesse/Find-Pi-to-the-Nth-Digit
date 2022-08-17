@@ -1,8 +1,5 @@
 import sys
-
-
 '''
-need to add quit option + infinite running* til quit
 need to add support for floats (?)
 '''
 
