@@ -146,7 +146,7 @@ def isNegative():
 global user_input_number
 user_input_number = ""
 while True:
-    if user_input_number == 'quit': #if q is pressed, call the isQuit() funcition
+    if user_input_number == 'quit': 
         sys.exit()
     out_of_range = False
     while True:
