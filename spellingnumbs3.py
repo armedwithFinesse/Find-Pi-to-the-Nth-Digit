@@ -1,3 +1,6 @@
+import sys
+
+
 '''
 need to add quit option + infinite running* til quit
 need to add support for floats (?)
@@ -8,9 +11,11 @@ print('''
  █▀█   █  ▄▄▄ ▄▄▄  ▄▄ ▄▄ ▄▄    ██ ▄▄▄    ▄▄▄▄  ▄▄▄ ▄▄      ██▄▄  ▀  ▄▄▄ ▄▄▄    ▄▄▄▄   ██   ██    ▄▄▄▄  ▄▄▄ ▄▄  
  █ ▀█▄ █   ██  ██   ██ ██ ██   ██▀  ██ ▄█▄▄▄██  ██▀ ▀▀      ▀▀███▄   ██▀  ██ ▄█▄▄▄██  ██   ██  ▄█▄▄▄██  ██▀ ▀▀ 
  █   ███   ██  ██   ██ ██ ██   ██    █ ██       ██        ▄     ▀██  ██    █ ██       ██   ██  ██       ██     
-▄█▄   ▀█   ▀█▄▄▀█▄ ▄██ ██ ██▄  ▀█▄▄▄▀   ▀█▄▄▄▀ ▄██▄       █▀▄▄▄▄█▀   ██▄▄▄▀   ▀█▄▄▄▀ ▄██▄ ▄██▄  ▀█▄▄▄▀ ▄██▄    
+▄█▄   ▀█   ▀█▄▄▀█▄ ▄██ ██ ██▄  ▀█▄▄▄▀   ▀█▄▄▄▀ ▄██▄       █▀▄▄▄▄█▀   ██▄▄▄▀   ▀█▄▄▄▀ ▄██▄ ▄██▄  ▀█▄▄▄▀ ▄██▄  
                                                                      ██                                        
                                                                     ▀▀▀▀                                                                                
+                                            Enter "quit" to exit
+
 ''')
 
 
@@ -138,18 +143,21 @@ def isNegative():
         out_of_range = True
         print('\nNumber is out of range. Please enter a valid integer')
         
-    
-    
-
-def isQuit():
-    quit()
 
 
+
+global user_input_number
+user_input_number = ""
 while True:
+    if user_input_number == 'quit': #if q is pressed, call the isQuit() funcition
+        sys.exit()
     out_of_range = False
-    while True: 
+    while True:
+        user_input_number = input('\nEnter a number between -1000000 and 1000000: ')
+        if user_input_number == 'quit':
+            sys.exit()
         try:
-            user_input_number = int(input('\nEnter a number between -1000000 and 1000000: '))
+            user_input_number == int(user_input_number)
             break
         except:
             print('\nPlease enter a valid integer between -1000000 and 1000000')
