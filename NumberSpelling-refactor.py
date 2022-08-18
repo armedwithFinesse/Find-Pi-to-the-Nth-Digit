@@ -15,9 +15,6 @@ print('''
 
 ''')
 
-
-
-
 placevalue = {
     'Negative?': '0',
     'Millions':'0',
@@ -27,8 +24,19 @@ placevalue = {
     'Hundreds':'0',
     'Tens':'0',
     'Ones':'0'
+    
 }
 
+
+def paste_value(i, dictionary_name, placevalue):
+    for key, val in dictionary_name.items():
+        if i == val:
+            dictval = key
+
+    if placevalue == 'none':
+        print(dictval, end=" ")
+    else:
+        print(dictval + placevalue, end="")
 
 def xteen(i, placevalue):
 
@@ -43,14 +51,8 @@ def xteen(i, placevalue):
         'Eighteen': '8',
         'Nineteen': '9'
     }
-    for key, val in xteenvalue.items():
-        if i == val:
-            xteendictvalue = key
 
-    if placevalue == 'none':
-        print(xteendictvalue, end="")
-    else:
-        print(xteendictvalue + placevalue, end="")
+    paste_value(i, xteenvalue, placevalue)
     
 
 def singledigitfunction(i, placevalue):
@@ -64,16 +66,9 @@ def singledigitfunction(i, placevalue):
         'Seven': '7',
         'Eight': '8',
         'Nine': '9',
-
     }
-    for key, val in singledigitdict.items():
-        if i == val:
-            dictval = key
-   
-    if placevalue == 'none':
-        print(dictval, end="")
-    else:
-        print(dictval + placevalue, end="")   
+
+    paste_value(i, singledigitdict, placevalue)  
 
 
 def doubledigitfunction(i, placevalue):
@@ -88,89 +83,51 @@ def doubledigitfunction(i, placevalue):
         'Eighty': '8',
         'Ninety': '9'
     }
+    paste_value(i, doubledigitdict, placevalue)
 
-    for key, val in doubledigitdict.items():
-        if i == val:
-            dictvaldouble = key
-
-    if placevalue == 'none':
-        print(dictvaldouble, end=" ")
-    else:
-        print(dictvaldouble + placevalue, end="")  
 
 
 def isNegative():
     if placevalue['Negative?'] == '-':
-        if len(user_input_number) > 8:
-            global out_of_range
-            out_of_range = True
-            print('\nNumber is out of range. Please enter a valid integer')
-        else:
-            print('Negative ', end="")
+        print('Negative ', end="")
     elif placevalue['Negative?'] == '0':
         pass
-    else:
-        out_of_range = True
-        print('\nNumber is out of range. Please enter a valid integer')
-        
 
-global user_input_number
-user_input_number = ""
 while True:
-    if user_input_number == 'quit': 
-        sys.exit()
-    out_of_range = False
     while True:
         user_input_number = input('\nEnter a number between -1000000 and 1000000: ')
         if user_input_number == 'quit':
-            sys.exit()
+            sys.exit('You have successfully exited the program')
         try:
             user_input_number == int(user_input_number)
             break
         except:
             print('\nPlease enter a valid integer between -1000000 and 1000000')
             continue
-            
-    
     
     user_input_number = str(user_input_number)
     user_input_number = user_input_number.zfill(8)
-    numlist = (user_input_number[0], user_input_number[1], user_input_number[2],
-    user_input_number[3],user_input_number[4],user_input_number[5],user_input_number[6], user_input_number[7])
+    numtup = user_input_number
 
+    #print(numtup) #Uncomment to see numtup
 
-    #print(numlist) #Uncomment to show integer split up into placevalues
-    #print(user_input_number) #Uncomment to show user input value
+    if len(user_input_number) > 8:
+        print('\nNumber is out of range. Please enter a valid integer')
+        continue
 
-    if len(numlist) == 8:
-        placevalue['Negative?'] = numlist[0]
-        placevalue['Millions'] = numlist[1]
-        placevalue['Hundred-Thousands'] = numlist[2]
-        placevalue['Ten-Thousands'] = numlist[3]
-        placevalue['Thousands'] = numlist[4]
-        placevalue['Hundreds'] = numlist[5]
-        placevalue['Tens'] = numlist[6]
-        placevalue['Ones'] = numlist[7]
-    else:
-        print('Something went horribly wrong')
-
+    indexcount = 0
+    for key in placevalue.keys():
+            placevalue[key] = numtup[indexcount]
+            indexcount += 1
+    
     isNegative()
-    try:
-        if out_of_range == True:
-            continue
-    except:
-        pass
-
 
     for i in placevalue: #millions
         if placevalue['Millions'] != '0': #Millions place
             singledigitfunction(placevalue['Millions'], ' Million ')
             break
 
-
-
     for i in placevalue: #hundred thousands
-
         if placevalue['Hundred-Thousands'] != '0' and placevalue['Ten-Thousands'] == '0' and placevalue['Thousands'] != '0': 
             singledigitfunction(placevalue['Hundred-Thousands'], ' Hundred-and ')
         elif placevalue['Hundred-Thousands'] != '0' and placevalue['Ten-Thousands'] == '0' and placevalue['Thousands'] == '0':
@@ -183,9 +140,7 @@ while True:
             singledigitfunction(placevalue['Hundred-Thousands'], ' Hundred-Thousand ')
         break
 
-
     for i in placevalue: #ten thousands
-
         if placevalue['Ten-Thousands'] == '1' and placevalue['Thousands'] > '0': 
             xteen(placevalue['Thousands'], ' Thousand ') #sep function needed to definte 11 - 19 thousand
         elif placevalue['Ten-Thousands'] == '1' and placevalue['Thousands'] == '0': 
@@ -198,28 +153,20 @@ while True:
             break 
         break
 
-
-
-
     for i in placevalue: #thousands
-
         if placevalue['Thousands'] != '0' and placevalue['Hundreds'] >= '0': 
             if placevalue['Ten-Thousands'] == '1':
                 break
             else:
                 singledigitfunction(placevalue['Thousands'], ' Thousand ')
-
         break
 
-
     for i in placevalue: #hundreds
-
         if placevalue['Hundreds'] != '0':
             singledigitfunction(placevalue['Hundreds'], ' Hundred ')
         break
 
     for i in placevalue: #tens
-
         if placevalue['Tens'] == "1" and placevalue['Ones'] > '0':
             xteen(placevalue['Ones'], 'none') #sep function needed to definte 11 - 19 
         elif placevalue['Tens'] != '0':
@@ -229,7 +176,6 @@ while True:
         break
 
     for i in placevalue: #ones
-
         if placevalue['Tens'] == '1':
             break
         elif placevalue['Ones'] != '0':
