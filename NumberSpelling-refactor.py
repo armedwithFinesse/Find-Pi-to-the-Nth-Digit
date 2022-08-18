@@ -15,7 +15,7 @@ print('''
 
 ''')
 
-placevalue = {
+placevalue = {                                                                      #defines place value within my range (|1,000,000|)
     'Negative?': '0',
     'Millions':'0',
     'Hundred-Thousands':'0',
@@ -24,11 +24,10 @@ placevalue = {
     'Hundreds':'0',
     'Tens':'0',
     'Ones':'0'
-    
 }
 
 
-def paste_value(i, dictionary_name, placevalue):
+def paste_value(i, dictionary_name, placevalue):                                       #function to paste prefixes and suffixes
     for key, val in dictionary_name.items():
         if i == val:
             dictval = key
@@ -38,8 +37,8 @@ def paste_value(i, dictionary_name, placevalue):
     else:
         print(dictval + placevalue, end="")
 
-def xteen(i, placevalue):
 
+def xteen(i, placevalue):                                                               #determines prefix if number is between 11-19
     xteenvalue = {
         "Eleven":"1",
         'Twelve': '2',
@@ -55,7 +54,7 @@ def xteen(i, placevalue):
     paste_value(i, xteenvalue, placevalue)
     
 
-def singledigitfunction(i, placevalue):
+def singledigitfunction(i, placevalue):                                                    #determines prefix if number is between 1-9
     singledigitdict = {
         'One':'1',
         'Two': '2',
@@ -71,7 +70,7 @@ def singledigitfunction(i, placevalue):
     paste_value(i, singledigitdict, placevalue)  
 
 
-def doubledigitfunction(i, placevalue):
+def doubledigitfunction(i, placevalue):                                                 #determines prefix if number is between 10-90
     doubledigitdict = {
         "Ten":"1",
         'Twenty': '2',
@@ -83,17 +82,19 @@ def doubledigitfunction(i, placevalue):
         'Eighty': '8',
         'Ninety': '9'
     }
+
     paste_value(i, doubledigitdict, placevalue)
 
 
 
-def isNegative():
+def isNegative():                                                                              #Determines if number is negative
     if placevalue['Negative?'] == '-':
         print('Negative ', end="")
     elif placevalue['Negative?'] == '0':
         pass
 
-while True:
+
+while True:                                                                                    #user interaction and exception handling 
     while True:
         user_input_number = input('\nEnter a number between -1000000 and 1000000: ')
         if user_input_number == 'quit':
@@ -111,18 +112,18 @@ while True:
 
     #print(numtup) #Uncomment to see numtup
 
-    if len(user_input_number) > 8:
+    if len(user_input_number) > 8:                                              #checks if input is in range
         print('\nNumber is out of range. Please enter a valid integer')
         continue
 
-    indexcount = 0
+    indexcount = 0                                                                #determines placevalue
     for key in placevalue.keys():
             placevalue[key] = numtup[indexcount]
             indexcount += 1
     
-    isNegative()
+    isNegative()                                                                  
 
-    for i in placevalue: #millions
+    for i in placevalue: #millions                                                                #Begins process of naming the number
         if placevalue['Millions'] != '0': #Millions place
             singledigitfunction(placevalue['Millions'], ' Million ')
             break
