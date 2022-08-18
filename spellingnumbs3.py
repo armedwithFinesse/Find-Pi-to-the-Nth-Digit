@@ -15,9 +15,6 @@ print('''
 
 ''')
 
-
-
-
 placevalue = {
     'Negative?': '0',
     'Millions':'0',
