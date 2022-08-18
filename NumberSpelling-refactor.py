@@ -98,7 +98,7 @@ while True:                                                                     
     while True:
         user_input_number = input('\nEnter a number between -1000000 and 1000000: ')
         if user_input_number == 'quit':
-            sys.exit('You have successfully exited the program')
+            sys.exit('\nYou have successfully exited the program\n')
         try:
             user_input_number == int(user_input_number)
             break
